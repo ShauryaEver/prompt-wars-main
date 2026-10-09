@@ -15,9 +15,10 @@ const { getRoutes } = require('./lib/routing');
 const { haversine, istHour, istWeekday, isNight } = require('./lib/geo');
 const { zonePenalty } = require('./lib/risk');
 const seed = require('./lib/seed');
+const { planDay } = require('./lib/planner');
+const { dayTimeline, cityClock } = require('./lib/timeline');
 
-const app = express() ;
-app.set('trust proxy', 1);
+const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json({ limit: '12mb' }));
@@ -259,6 +260,31 @@ app.get('/api/insights', async (req, res) => {
 function safeJson(s) {
   try { return JSON.parse(s); } catch { return null; }
 }
+
+
+// ---------- Standout features ----------
+// AI Day Planner: free-text wish -> time-slotted, safety/weather-aware itinerary
+app.get('/api/plan', async (req, res) => {
+  const text = String(req.query.text || '').slice(0, 300);
+  if (text.trim().length < 3) return res.status(400).json({ error: 'Tell me what kind of day you want (e.g. "rainy Sunday, heritage and misal, budget").' });
+  const { ctx } = await context(req);
+  const reports = reportsLib.list({ activeOnly: true });
+  const overrides = {};
+  if (req.query.start !== undefined && Number.isFinite(Number(req.query.start))) overrides.start = Math.max(0, Math.min(22, Number(req.query.start)));
+  res.json({ context: ctx, ...planDay(places, { text, zones, reports, hour: ctx.hour, rainy: ctx.rainy, overrides }) });
+});
+
+// Safety Time-Machine for one place (24h, dry vs rain)
+app.get('/api/places/:id/timeline', (req, res) => {
+  const p = places.find((x) => x.id === req.params.id);
+  if (!p) return res.status(404).json({ error: 'Place not found' });
+  res.json({ id: p.id, name: p.name, ...dayTimeline(p, { zones, reports: reportsLib.list({ activeOnly: true }) }) });
+});
+
+// City Risk Clock (24h, whole city)
+app.get('/api/city-clock', (req, res) => {
+  res.json(cityClock(places, { zones, reports: reportsLib.list({ activeOnly: true }) }));
+});
 
 app.use('/api', (req, res) => res.status(404).json({ error: 'Not found' }));
 

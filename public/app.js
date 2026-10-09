@@ -225,6 +225,7 @@ async function placeDetail(id) {
     <p class="sub" style="margin-top:8px">${esc(p.blurb)}</p>
     ${p.history ? `<p class="sub"><b>History:</b> ${esc(p.history)}</p>` : ''}
     ${bars(p.scores.parts)}
+    ${await safetyTimeMachine(p.id)}
     ${p.scores.livePenalty > 0 ? `<div class="hint" style="margin-top:8px">Safety adjusted from ${p.scores.safetyBaseline} to ${p.scores.parts.safety} using live risk near this spot.</div>` : ''}
     ${p.socialMood ? `<div class="hint" style="margin-top:6px">Social mood: ${p.socialMood.sentiment > 0.15 ? '😊 positive' : p.socialMood.sentiment < -0.15 ? '😟 negative' : '😐 mixed'} (${p.socialMood.posts} post${p.socialMood.posts > 1 ? 's' : ''})</div>` : ''}
     ${zonesHtml ? '<h3>Nearby risk zones</h3>' + zonesHtml : ''}
@@ -557,6 +558,8 @@ tabs.live = async (host) => {
     <h3>Alerts</h3>
     ${ins.alerts.length ? ins.alerts.map((a) => `<div class="alert ${a.level}" ${a.lat ? `data-fly="${a.lat},${a.lng}" style="cursor:pointer"` : ''}><b>${esc(a.title)}</b><span>${esc(a.text)}</span></div>`).join('') : '<p class="sub">No active alerts.</p>'}
 
+    ${await cityClockHtml()}
+
     <h3>Smart picks for this moment</h3>
     ${ins.recommendations.map((r) => `<div class="card"><div class="name">${esc(r.title)}</div><div class="meta">${esc(r.why)}</div>
       ${r.places.map((p) => `<div class="row" style="margin-top:6px;cursor:pointer" data-fly="${p.lat},${p.lng}"><span>${EMOJI[p.category] || ''}</span><span>${esc(p.name)}</span><span class="tag" style="margin:0 0 0 auto">${p.scores.composite}</span></div>`).join('')}</div>`).join('')}
@@ -722,6 +725,135 @@ function reportCard(r) {
     <div class="row" style="margin-top:6px;justify-content:space-between"><span class="hint">${r.ageHours}h ago · ${r.confirms} confirm${r.confirms === 1 ? '' : 's'} · credibility ${Math.round(r.credibility * 100)}%</span>
     <button class="btn ghost small" data-confirm="${esc(r.id)}">👍 Confirm</button></div></div>`;
 }
+
+
+/* =========================================================
+   Standout features: Safety sparkline, City Risk Clock, AI Day Planner
+   ========================================================= */
+const fmtHour = (h) => {
+  const x = Math.floor(h) % 24;
+  const m = Math.round((h - Math.floor(h)) * 60);
+  const hh = ((x + 11) % 12) + 1;
+  return `${hh}:${String(m).padStart(2, '0')}${x < 12 ? 'am' : 'pm'}`;
+};
+
+/** 24h line chart of two series (dry vs rain) as inline SVG. */
+function sparkline(dry, rain, nowHour, lo = 1, hi = 10) {
+  const W = 300, H = 64, padX = 6, padY = 8;
+  const x = (i) => padX + (i / 23) * (W - padX * 2);
+  const y = (v) => padY + (1 - (v - lo) / (hi - lo)) * (H - padY * 2);
+  const path = (arr) => arr.map((v, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(' ');
+  return `<svg class="spark" viewBox="0 0 ${W} ${H}" role="img" aria-label="Safety by hour of day">
+    <rect x="${x(20)}" y="0" width="${x(23) - x(20)}" height="${H}" fill="rgba(120,140,255,.10)"/>
+    <rect x="${x(0)}" y="0" width="${x(5) - x(0)}" height="${H}" fill="rgba(120,140,255,.10)"/>
+    <path d="${path(rain)}" fill="none" stroke="#4aa3ff" stroke-width="1.5" stroke-dasharray="3 3"/>
+    <path d="${path(dry)}" fill="none" stroke="#ff9f1c" stroke-width="2.2"/>
+    <line x1="${x(nowHour)}" x2="${x(nowHour)}" y1="0" y2="${H}" stroke="#fff" stroke-opacity=".55" stroke-width="1"/>
+    <circle cx="${x(nowHour)}" cy="${y(dry[nowHour])}" r="3.2" fill="#fff"/>
+    <text x="${x(0)}" y="${H - 1}">12am</text><text x="${x(6) - 6}" y="${H - 1}">6am</text><text x="${x(12) - 6}" y="${H - 1}">12pm</text><text x="${x(18) - 6}" y="${H - 1}">6pm</text>
+  </svg>`;
+}
+
+async function safetyTimeMachine(id) {
+  try {
+    const t = await api('/places/' + id + '/timeline' + ctxQs());
+    const now = hourNow();
+    return `<div class="sparkwrap">
+      <b style="font-size:12.5px">⏳ Safety through the day</b>
+      ${sparkline(t.hours.map((h) => h.dry), t.hours.map((h) => h.rain), now)}
+      <div class="hint"><span class="legend-dot" style="background:#ff9f1c;margin-left:0"></span>dry <span class="legend-dot" style="background:#4aa3ff"></span>rain · shaded = night · line = now</div>
+      <div class="hint" style="margin-top:4px"><b>${esc(t.verdict)}</b></div>
+    </div>`;
+  } catch { return ''; }
+}
+
+async function cityClockHtml() {
+  try {
+    const c = await api('/city-clock');
+    const now = hourNow();
+    return `<h3>City risk clock</h3>
+      <div class="sparkwrap">
+        ${sparkline(c.hours.map((h) => h.avgSafety), c.hours.map((h) => h.avgSafetyRain), now, 6, 8)}
+        <div class="hint">Average safety of all listed places by hour. Safest around <b>${fmtHour(c.safest)}</b>, weakest around <b>${fmtHour(c.riskiest)}</b>. ${c.hours[now].activeZones} risk zones are live right now.</div>
+      </div>`;
+  } catch { return ''; }
+}
+
+/* ---------- Plan (AI Day Planner) ---------- */
+const PLAN_EXAMPLES = [
+  'Rainy Sunday, heritage and misal, on a budget',
+  'Solo evening walk, safe spots only, food and old city',
+  'Family morning with kids: gardens, temples, easy access',
+  'Foodie day, 5 stops, from 10am',
+];
+
+function drawPlan(stops) {
+  clearLayers('route', 'places');
+  if (!stops.length) return;
+  const pts = stops.map((s) => [s.lat, s.lng]);
+  L.polyline(pts, { color: '#ff9f1c', weight: 4, opacity: 0.85, dashArray: '8 8' }).addTo(layers.route);
+  stops.forEach((s, i) => {
+    const icon = L.divIcon({ className: '', html: `<div class="numpin">${i + 1}</div>`, iconSize: [26, 26], iconAnchor: [13, 13] });
+    L.marker(pts[i], { icon }).addTo(layers.route).bindPopup(`<b>${i + 1}. ${esc(s.name)}</b><br>${fmtHour(s.arrive)} – ${fmtHour(s.leave)}`);
+  });
+  map.fitBounds(L.latLngBounds(pts).pad(0.25));
+}
+
+tabs.plan = async (host) => {
+  clearLayers('zones', 'reports', 'traffic');
+  setLegend('');
+  host.innerHTML = `
+    <h2>✨ Plan my day</h2>
+    <p class="sub">Describe your day in your own words. CityPulse builds a timed route that respects opening hours, rain, budget and how safe each spot is <i>at the hour you arrive</i>.</p>
+    <textarea id="wish" placeholder="e.g. rainy Sunday, heritage and misal, budget, from 9am">${esc(state.planText || '')}</textarea>
+    <div class="chips">${PLAN_EXAMPLES.map((e) => `<span class="chip" data-ex="${esc(e)}">${esc(e)}</span>`).join('')}</div>
+    <div class="row"><button class="btn" id="planGo">Build my itinerary</button><span class="hint" id="planHint"></span></div>
+    <div id="planOut" style="margin-top:14px"></div>`;
+  const out = $('#planOut');
+  const go = async () => {
+    const text = $('#wish').value.trim();
+    state.planText = text;
+    if (text.length < 3) return toast('Tell me a little about your day first');
+    $('#planGo').disabled = true;
+    $('#planHint').textContent = 'Planning…';
+    try {
+      const plan = await api('/plan' + ctxQs({ text }));
+      await ensureAllPlaces();
+      state.plan = plan;
+      drawPlan(plan.stops);
+      const w = plan.wish;
+      out.innerHTML = plan.stops.length
+        ? `<div class="stats">
+            <div class="stat"><b>${plan.summary.stops}</b><span>stops</span></div>
+            <div class="stat"><b>${plan.summary.distanceKm} km</b><span>total travel</span></div>
+            <div class="stat"><b>${plan.summary.avgSafety}</b><span>avg safety</span></div>
+            <div class="stat"><b>${fmtHour(plan.summary.ends)}</b><span>finish</span></div>
+          </div>
+          <p class="hint" style="margin:8px 0">Understood: ${esc(w.interests.join(', '))} · ${w.budget === 'low' ? 'budget' : w.budget === 'high' ? 'premium' : 'mid-range'} · ${w.rain ? 'rain plan' : 'dry weather'}${w.solo ? ' · solo-safe mode' : ''}${w.kids ? ' · family-friendly' : ''} · ${fmtHour(w.start)} start</p>
+          ${plan.stops.map((s, i) => `${i ? `<div class="plan-travel">🚗 ~${s.travelMin} min</div>` : ''}
+            <div class="card click plan-stop" data-fly="${s.lat},${s.lng}">
+              <div class="num">${i + 1}</div>
+              <div class="top"><div><div class="name">${EMOJI[s.category] || ''} ${esc(s.name)}</div>
+                <div class="meta">${fmtHour(s.arrive)} – ${fmtHour(s.leave)} · ${esc(s.priceLabel)}</div></div>
+                <div class="badge ${scoreClass(s.composite)}">${s.composite}</div></div>
+              <div class="why">${s.why.map((x) => `<span>${esc(x)}</span>`).join('')}</div>
+              ${s.caution ? `<div class="alert warning" style="margin:8px 0 0"><b>Heads up</b><span>${esc(s.caution)}</span></div>` : ''}
+              <div class="row" style="margin-top:8px"><button class="btn ghost small" data-route-to="${esc(s.id)}">🧭 Safest route here</button></div>
+            </div>`).join('')}`
+        : '<div class="alert warning"><b>No stops fit</b><span>Try a wider time window or different interests.</span></div>';
+      $$('[data-fly]', out).forEach((el) => (el.onclick = (ev) => { if (ev.target.closest('button')) return; const [la, ln] = el.dataset.fly.split(',').map(Number); map.flyTo([la, ln], 16); }));
+      $('#planHint').textContent = '';
+    } catch (err) {
+      $('#planHint').textContent = '';
+      toast(err.message);
+    } finally {
+      $('#planGo').disabled = false;
+    }
+  };
+  $('#planGo').onclick = go;
+  $$('.chip[data-ex]', host).forEach((c) => c.addEventListener('click', () => { $('#wish').value = c.dataset.ex; go(); }));
+  if (state.plan) { drawPlan(state.plan.stops); }
+};
 
 /* =========================================================
    Router / wiring
