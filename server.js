@@ -16,7 +16,8 @@ const { haversine, istHour, istWeekday, isNight } = require('./lib/geo');
 const { zonePenalty } = require('./lib/risk');
 const seed = require('./lib/seed');
 
-const app = express();
+const app = express() ;
+app.set('trust proxy', 1);
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json({ limit: '12mb' }));
