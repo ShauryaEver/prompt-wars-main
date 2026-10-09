@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # CityPulse Pune
 
 A smart city-exploration platform that turns scattered city data into verified, actionable insights: discover places, learn the history, avoid unsafe areas, compare the best and worst spots, and see live conditions.
@@ -55,3 +56,6 @@ test/smoke.js        end-to-end API checks
 `GET /api/places` (`category,q,budget,indoor,sort,weights`) · `/api/places/:id` · `/api/compare?ids=` · `/api/rank` · `/api/zones` · `/api/reports` (+ `POST`, `POST /:id/confirm`) · `POST /api/nlp` · `/api/route?from=lat,lng&to=lat,lng` · `/api/weather` · `/api/traffic` · `/api/social` · `/api/traditions` · `/api/insights`
 
 Most endpoints accept `?hour=0-23&rain=0|1` to simulate a time of day or weather scenario.
+=======
+# prompt_wars
+>>>>>>> 3467d12fc17c318c65df811c752e8653bad731a3
