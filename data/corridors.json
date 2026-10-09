@@ -1,0 +1,8 @@
+[
+  { "id": "fc-jm", "name": "FC Road ↔ JM Road", "lat": 18.5230, "lng": 73.8420, "base": 0.55, "weekendBoost": 0.1 },
+  { "id": "nh48-chandni", "name": "Mumbai–Bengaluru Hwy (Chandni Chowk)", "lat": 18.5090, "lng": 73.7915, "base": 0.6, "weekendBoost": 0.05 },
+  { "id": "nagar-road", "name": "Nagar Road (Viman Nagar–Kharadi)", "lat": 18.5550, "lng": 73.9100, "base": 0.6, "weekendBoost": 0.0 },
+  { "id": "swargate-katraj", "name": "Swargate ↔ Katraj", "lat": 18.4780, "lng": 73.8630, "base": 0.5, "weekendBoost": 0.05 },
+  { "id": "sinhagad-road", "name": "Sinhagad Road", "lat": 18.4880, "lng": 73.8300, "base": 0.5, "weekendBoost": 0.15 },
+  { "id": "laxmi-road", "name": "Laxmi Road (old city)", "lat": 18.5150, "lng": 73.8540, "base": 0.45, "weekendBoost": 0.3 }
+]

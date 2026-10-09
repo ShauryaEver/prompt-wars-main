@@ -1,0 +1,227 @@
+[
+  {
+    "id": "shaniwar-wada", "name": "Shaniwar Wada", "category": "heritage",
+    "lat": 18.5195, "lng": 73.8553, "rating": 4.4, "price": 25, "priceLabel": "Entry ~₹25",
+    "cleanliness": 6, "safety": 7, "accessibility": 8, "indoor": false, "year": 1732,
+    "tags": ["fort", "peshwa", "evening light show"],
+    "hours": "08:00–18:00 (light show in the evening)",
+    "blurb": "Iconic Peshwa-era fortified palace in the old city.",
+    "history": "Built in 1732 as the seat of the Peshwas under Bajirao I. Most of the wooden structure was destroyed in a fire in 1828, leaving the massive stone ramparts and gates you see today."
+  },
+  {
+    "id": "sinhagad-fort", "name": "Sinhagad Fort", "category": "heritage",
+    "lat": 18.3663, "lng": 73.7558, "rating": 4.5, "price": 0, "priceLabel": "Free (parking fee)",
+    "cleanliness": 5, "safety": 6, "accessibility": 4, "indoor": false, "year": 1670,
+    "tags": ["hill fort", "trek", "sunrise", "pitla-bhakri"],
+    "hours": "Open all day; best at sunrise",
+    "blurb": "Hill fortress above Pune with sweeping views and classic Maharashtrian snacks.",
+    "history": "Associated with the 1670 Battle of Sinhagad, where Tanaji Malusare died capturing the fort for Shivaji. A popular weekend trek and drive-up."
+  },
+  {
+    "id": "aga-khan-palace", "name": "Aga Khan Palace", "category": "heritage",
+    "lat": 18.5522, "lng": 73.9018, "rating": 4.5, "price": 25, "priceLabel": "Entry ~₹25",
+    "cleanliness": 8, "safety": 8, "accessibility": 7, "indoor": false, "year": 1892,
+    "tags": ["gandhi", "palace", "museum", "gardens"],
+    "hours": "09:00–17:30",
+    "blurb": "Grand Indo-Saracenic palace turned Gandhi memorial.",
+    "history": "Built in 1892 by Sultan Muhammad Shah Aga Khan III. Gandhi, Kasturba Gandhi and others were detained here from 1942 to 1944, and the palace now houses a memorial and museum."
+  },
+  {
+    "id": "pataleshwar-cave", "name": "Pataleshwar Cave Temple", "category": "heritage",
+    "lat": 18.5280, "lng": 73.8470, "rating": 4.3, "price": 0, "priceLabel": "Free",
+    "cleanliness": 7, "safety": 7, "accessibility": 7, "indoor": false, "year": 800,
+    "tags": ["rock-cut", "shiva", "quiet"],
+    "hours": "06:00–21:00",
+    "blurb": "Monolithic rock-cut temple hidden in the middle of JM Road.",
+    "history": "An 8th-century rock-cut cave temple dedicated to Shiva, carved from a single basalt outcrop and a striking quiet pocket in a busy commercial area."
+  },
+  {
+    "id": "kelkar-museum", "name": "Raja Dinkar Kelkar Museum", "category": "attraction",
+    "lat": 18.5101, "lng": 73.8546, "rating": 4.5, "price": 150, "priceLabel": "Entry ~₹150",
+    "cleanliness": 8, "safety": 8, "accessibility": 7, "indoor": true, "year": 1975,
+    "tags": ["museum", "indoor", "folk art", "rain-plan"],
+    "hours": "09:30–17:30",
+    "blurb": "Quirky private collection of everyday and folk art objects.",
+    "history": "Created from the personal collection of Dr. Dinkar G. Kelkar, gathered over decades and gifted to the public. Great rainy-day option."
+  },
+  {
+    "id": "dagdusheth-ganpati", "name": "Dagdusheth Halwai Ganpati Temple", "category": "heritage",
+    "lat": 18.5164, "lng": 73.8561, "rating": 4.8, "price": 0, "priceLabel": "Free",
+    "cleanliness": 7, "safety": 6, "accessibility": 7, "indoor": true, "year": 1893,
+    "tags": ["temple", "ganeshotsav", "tradition"],
+    "hours": "05:00–23:00",
+    "blurb": "Pune's best-known Ganesha temple and the heart of Ganeshotsav.",
+    "history": "Closely tied to Pune's public Ganeshotsav tradition from the late 19th century. Expect heavy crowds during the festival."
+  },
+  {
+    "id": "vishrambaug-wada", "name": "Vishrambaug Wada", "category": "heritage",
+    "lat": 18.5156, "lng": 73.8556, "rating": 4.1, "price": 0, "priceLabel": "Free",
+    "cleanliness": 6, "safety": 7, "accessibility": 7, "indoor": true, "year": 1807,
+    "tags": ["wada", "peshwa", "architecture", "carved wood"],
+    "hours": "10:00–18:00",
+    "blurb": "Elegant carved-wood Peshwa mansion in Budhwar Peth.",
+    "history": "Former residence of Peshwa Bajirao II in the early 1800s, known for its ornate wooden façade and pillars."
+  },
+  {
+    "id": "parvati-hill", "name": "Parvati Hill Temples", "category": "attraction",
+    "lat": 18.4976, "lng": 73.8426, "rating": 4.6, "price": 0, "priceLabel": "Free",
+    "cleanliness": 6, "safety": 6, "accessibility": 4, "indoor": false, "year": 1749,
+    "tags": ["sunrise", "stairs", "views", "peshwa"],
+    "hours": "05:00–20:00",
+    "blurb": "Climb ~100 steps for a skyline view and Peshwa-era temples.",
+    "history": "A hilltop temple complex built under the Peshwas, with views over the old city. Best at sunrise, and poorly lit after dark."
+  },
+  {
+    "id": "shinde-chhatri", "name": "Shinde Chhatri", "category": "heritage",
+    "lat": 18.5056, "lng": 73.9006, "rating": 4.2, "price": 0, "priceLabel": "Free",
+    "cleanliness": 6, "safety": 7, "accessibility": 6, "indoor": false, "year": 1794,
+    "tags": ["memorial", "maratha", "architecture"],
+    "hours": "08:00–17:00",
+    "blurb": "Memorial to Mahadji Shinde combining Maratha and Rajput styles.",
+    "history": "A memorial built to honour Mahadji Shinde, who died in 1794, noted for its mix of architectural styles."
+  },
+  {
+    "id": "osho-garden", "name": "Osho Teerth Park", "category": "park",
+    "lat": 18.5398, "lng": 73.8912, "rating": 4.2, "price": 0, "priceLabel": "Free",
+    "cleanliness": 9, "safety": 8, "accessibility": 8, "indoor": false, "year": null,
+    "tags": ["park", "walk", "calm"],
+    "hours": "06:00–10:00, 16:00–20:00",
+    "blurb": "Manicured Koregaon Park garden for a clean, quiet walk.",
+    "history": ""
+  },
+  {
+    "id": "tulshibaug", "name": "Tulshibaug Market", "category": "market",
+    "lat": 18.5148, "lng": 73.8552, "rating": 4.1, "price": 300, "priceLabel": "Spend ~₹300",
+    "cleanliness": 4, "safety": 5, "accessibility": 6, "indoor": false, "year": null,
+    "tags": ["bargain", "street shopping", "crowded"],
+    "hours": "10:00–21:00",
+    "blurb": "Dense old-city market for utensils, jewellery and festival goods.",
+    "history": ""
+  },
+  {
+    "id": "mahatma-phule-mandai", "name": "Mahatma Phule Mandai", "category": "market",
+    "lat": 18.5113, "lng": 73.8640, "rating": 4.0, "price": 200, "priceLabel": "Spend ~₹200",
+    "cleanliness": 5, "safety": 6, "accessibility": 6, "indoor": true, "year": 1886,
+    "tags": ["produce", "heritage market", "local"],
+    "hours": "07:00–21:00",
+    "blurb": "Victorian-era vegetable market, a good place to see local life.",
+    "history": "Opened in the 1880s as a covered market with a distinctive hall and still an active produce market."
+  },
+  {
+    "id": "vaishali", "name": "Vaishali Restaurant", "category": "food",
+    "lat": 18.5236, "lng": 73.8410, "rating": 4.3, "price": 500, "priceLabel": "~₹500 for two",
+    "cleanliness": 7, "safety": 8, "accessibility": 8, "indoor": true, "year": 1953,
+    "tags": ["south-indian", "iconic", "FC Road", "veg"],
+    "hours": "07:00–23:00",
+    "blurb": "FC Road institution for dosas, misal and filter coffee.",
+    "history": ""
+  },
+  {
+    "id": "cafe-goodluck", "name": "Cafe Goodluck", "category": "food",
+    "lat": 18.5167, "lng": 73.8423, "rating": 4.3, "price": 400, "priceLabel": "~₹400 for two",
+    "cleanliness": 7, "safety": 8, "accessibility": 8, "indoor": true, "year": 1935,
+    "tags": ["irani cafe", "bun maska", "heritage cafe"],
+    "hours": "07:00–23:00",
+    "blurb": "Classic Irani cafe known for bun maska and kheema pav.",
+    "history": ""
+  },
+  {
+    "id": "bedekar-misal", "name": "Bedekar Misal", "category": "food",
+    "lat": 18.5133, "lng": 73.8498, "rating": 4.4, "price": 200, "priceLabel": "~₹200 for two",
+    "cleanliness": 6, "safety": 8, "accessibility": 7, "indoor": true, "year": null,
+    "tags": ["misal pav", "street food", "budget", "spicy"],
+    "hours": "08:00–13:00, 16:00–21:00",
+    "blurb": "Legendary Narayan Peth misal at a student-friendly price.",
+    "history": ""
+  },
+  {
+    "id": "kayani-bakery", "name": "Kayani Bakery", "category": "food",
+    "lat": 18.5133, "lng": 73.8776, "rating": 4.3, "price": 300, "priceLabel": "~₹300 for two",
+    "cleanliness": 7, "safety": 7, "accessibility": 7, "indoor": true, "year": 1955,
+    "tags": ["irani bakery", "shrewsbury biscuits", "camp"],
+    "hours": "08:00–20:00",
+    "blurb": "Camp-area Irani bakery famous for Shrewsbury biscuits.",
+    "history": ""
+  },
+  {
+    "id": "sujata-mastani", "name": "Sujata Mastani", "category": "food",
+    "lat": 18.5117, "lng": 73.8518, "rating": 4.2, "price": 250, "priceLabel": "~₹250 for two",
+    "cleanliness": 7, "safety": 8, "accessibility": 7, "indoor": true, "year": null,
+    "tags": ["mastani", "dessert", "budget"],
+    "hours": "09:00–23:00",
+    "blurb": "Pune's signature thick milkshake-ice cream dessert.",
+    "history": ""
+  },
+  {
+    "id": "chitale-bandhu", "name": "Chitale Bandhu Mithaiwale", "category": "food",
+    "lat": 18.5106, "lng": 73.8529, "rating": 4.3, "price": 300, "priceLabel": "~₹300 for two",
+    "cleanliness": 8, "safety": 8, "accessibility": 8, "indoor": true, "year": 1950,
+    "tags": ["sweets", "bakarwadi", "snacks"],
+    "hours": "08:00–21:30",
+    "blurb": "Famous for bakarwadi and Maharashtrian sweets.",
+    "history": ""
+  },
+  {
+    "id": "shreyas", "name": "Shreyas Restaurant", "category": "food",
+    "lat": 18.5196, "lng": 73.8396, "rating": 4.2, "price": 600, "priceLabel": "~₹600 for two",
+    "cleanliness": 8, "safety": 8, "accessibility": 7, "indoor": true, "year": null,
+    "tags": ["thali", "traditional", "veg"],
+    "hours": "11:30–15:30, 19:00–22:30",
+    "blurb": "Sit-down Maharashtrian thali served on banana leaf.",
+    "history": ""
+  },
+  {
+    "id": "german-bakery", "name": "German Bakery (Koregaon Park)", "category": "food",
+    "lat": 18.5361, "lng": 73.8938, "rating": 4.0, "price": 700, "priceLabel": "~₹700 for two",
+    "cleanliness": 8, "safety": 8, "accessibility": 8, "indoor": true, "year": null,
+    "tags": ["cafe", "brunch", "KP"],
+    "hours": "07:00–23:00",
+    "blurb": "Laid-back Koregaon Park cafe for brunch and coffee.",
+    "history": ""
+  },
+  {
+    "id": "jw-marriott", "name": "JW Marriott Pune", "category": "hotel",
+    "lat": 18.5329, "lng": 73.8316, "rating": 4.6, "price": 12000, "priceLabel": "~₹12,000/night",
+    "cleanliness": 10, "safety": 9, "accessibility": 7, "indoor": true, "year": null,
+    "tags": ["luxury", "Senapati Bapat Road"],
+    "hours": "24h",
+    "blurb": "Luxury stay on Senapati Bapat Road.",
+    "history": ""
+  },
+  {
+    "id": "westin-kp", "name": "The Westin Pune Koregaon Park", "category": "hotel",
+    "lat": 18.5392, "lng": 73.8951, "rating": 4.5, "price": 11000, "priceLabel": "~₹11,000/night",
+    "cleanliness": 10, "safety": 9, "accessibility": 8, "indoor": true, "year": null,
+    "tags": ["luxury", "KP", "riverside"],
+    "hours": "24h",
+    "blurb": "Upscale riverside hotel in Koregaon Park.",
+    "history": ""
+  },
+  {
+    "id": "hyatt-regency", "name": "Hyatt Regency Pune", "category": "hotel",
+    "lat": 18.5555, "lng": 73.9084, "rating": 4.4, "price": 9000, "priceLabel": "~₹9,000/night",
+    "cleanliness": 9, "safety": 8, "accessibility": 7, "indoor": true, "year": null,
+    "tags": ["business", "Nagar Road"],
+    "hours": "24h",
+    "blurb": "Business-friendly hotel toward the airport side.",
+    "history": ""
+  },
+  {
+    "id": "sagar-plaza", "name": "Hotel Sagar Plaza", "category": "hotel",
+    "lat": 18.5290, "lng": 73.8753, "rating": 4.0, "price": 3500, "priceLabel": "~₹3,500/night",
+    "cleanliness": 7, "safety": 6, "accessibility": 9, "indoor": true, "year": null,
+    "tags": ["mid-range", "near railway station"],
+    "hours": "24h",
+    "blurb": "Practical mid-range stay close to Pune Junction.",
+    "history": ""
+  },
+  {
+    "id": "zostel-pune", "name": "Zostel Pune", "category": "hotel",
+    "lat": 18.5303, "lng": 73.8740, "rating": 4.2, "price": 700, "priceLabel": "~₹700/night (dorm)",
+    "cleanliness": 7, "safety": 7, "accessibility": 8, "indoor": true, "year": null,
+    "tags": ["hostel", "budget", "backpacker"],
+    "hours": "24h",
+    "blurb": "Backpacker hostel suited to solo and budget travellers.",
+    "history": ""
+  }
+]

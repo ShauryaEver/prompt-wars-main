@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CityPulse Pune</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,600;9..144,800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="panel" id="panel">
+      <header class="brand">
+        <div class="logo">CityPulse<span>Pune</span></div>
+        <div class="live" id="liveChip" title="Live conditions">…</div>
+      </header>
+
+      <nav class="tabs" id="tabs" role="tablist">
+        <button data-tab="discover" class="active">Discover</button>
+        <button data-tab="heritage">Heritage</button>
+        <button data-tab="safety">Safety</button>
+        <button data-tab="compare">Compare</button>
+        <button data-tab="live">Live</button>
+        <button data-tab="report">Report</button>
+      </nav>
+
+      <main class="content" id="content" aria-live="polite"></main>
+    </aside>
+
+    <div class="mapwrap">
+      <div id="map"></div>
+      <button class="panel-toggle" id="panelToggle" aria-label="Toggle panel">☰</button>
+      <div class="legend" id="legend"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

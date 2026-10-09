@@ -1,0 +1,14 @@
+[
+  { "id": "ganeshotsav", "name": "Ganeshotsav", "when": "Aug–Sep (10 days)", "emoji": "🐘",
+    "text": "Pune's defining public festival, with elaborate community pandals, processions and the famous 'manache' Ganpati order. Expect heavy crowds and road closures in the old city." },
+  { "id": "palkhi", "name": "Pandharpur Wari / Palkhi", "when": "Jun–Jul", "emoji": "🚩",
+    "text": "Pilgrim processions of Sant Dnyaneshwar and Sant Tukaram pass through Pune with devotees walking toward Pandharpur." },
+  { "id": "sawai", "name": "Sawai Gandharva Bhimsen Mahotsav", "when": "December", "emoji": "🎶",
+    "text": "A major Hindustani classical music festival held in Pune over several nights." },
+  { "id": "gudi-padwa", "name": "Gudi Padwa", "when": "Mar–Apr", "emoji": "🏵️",
+    "text": "Marathi New Year, marked with gudi flags, rangoli and shobha yatra processions." },
+  { "id": "diwali-pahat", "name": "Diwali Pahat", "when": "Oct–Nov", "emoji": "🪔",
+    "text": "Early-morning music concerts during Diwali, a long-running Pune tradition." },
+  { "id": "food", "name": "Puneri food culture", "when": "Year-round", "emoji": "🍛",
+    "text": "Misal pav, bakarwadi, mastani, Irani cafes and thali meals each have their own long-standing local institutions." }
+]

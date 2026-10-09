@@ -1,0 +1,17 @@
+{
+  "name": "citypulse-pune",
+  "version": "1.0.0",
+  "description": "Smart city exploration platform for Pune: discover, heritage, safety-aware routing, best-vs-worst comparison and live city insights.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test/smoke.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "license": "MIT"
+}
